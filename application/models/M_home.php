@@ -19,6 +19,23 @@ class M_home extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function detail_barang($id_barang)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_barang');
+        $this->db->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_barang.id_kategori', 'left');
+        $this->db->where('id_barang', $id_barang);
+        return $this->db->get()->row();
+    }
+
+    public function gambar_barang($id_barang)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_gambar');
+        $this->db->where('id_barang', $id_barang);
+        return $this->db->get()->result();
+    }
+
     public function kategori($id_kategori)
     {
         $this->db->select('*');
