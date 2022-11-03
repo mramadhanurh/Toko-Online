@@ -24,16 +24,17 @@
                                     'name' => $i.'[qty]', 
                                     'value' => $items['qty'], 
                                     'maxlength' => '3', 
+                                    'min' => '0',
                                     'size' => '5', 
                                     'type' => 'number',
                                     'class' => 'form-control'
                                 )); ?>
                             </td>
                             <td><?php echo $items['name']; ?></td>
-                            <td style="text-align:right">Rp.<?php echo $this->cart->format_number($items['price']); ?></td>
-                            <td style="text-align:right">Rp.<?php echo $this->cart->format_number($items['subtotal']); ?></td>
+                            <td style="text-align:right">Rp. <?php echo number_format($items['price'], 0); ?></td>
+                            <td style="text-align:right">Rp. <?php echo number_format($items['subtotal'], 0); ?></td>
                             <td class="text-center">
-                                <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="<?= base_url('belanja/delete/' . $items['rowid']) ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                             </td>
                     </tr>
 
@@ -44,12 +45,13 @@
             <tr>
                     <td colspan="2"> </td>
                     <td class="right"><h3>Total :</h3></td>
-                    <td class="right"><h3>Rp.<?php echo $this->cart->format_number($this->cart->total()); ?></h3></td>
+                    <td class="right"><h3>Rp. <?php echo number_format($this->cart->total(), 0); ?></h3></td>
             </tr>
 
             </table>
 
-            <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Update Chart</button>
+            <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Update Cart</button>
+            <a href="<?= base_url('belanja/clear') ?>" class="btn btn-danger btn-flat"><i class="fa fa-recycle"></i> Clear Cart</a>
             <a href="#" class="btn btn-success btn-flat"><i class="fa fa-check-square"></i> Check Out</a>
             <?php echo form_close(); ?>
             <br>
