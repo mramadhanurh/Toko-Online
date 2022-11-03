@@ -82,8 +82,12 @@
             <span class="badge badge-danger navbar-badge"><?= $jml_item ?></span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <!-- Barang Start -->
-            <?php foreach ($keranjang as $key => $value) { 
+            <?php if (empty($keranjang)) { ?>
+              <a href="#" class="dropdown-item">
+                <p>Keranjang Belanja Kosong</p>
+              </a>
+            <?php } else {
+            foreach ($keranjang as $key => $value) { 
                 $barang = $this->m_home->detail_barang($value['id']);
             ?>
             <a href="#" class="dropdown-item">
@@ -114,8 +118,10 @@
               </div>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">View Cart</a>
+            <a href="<?= base_url('belanja') ?>" class="dropdown-item dropdown-footer">View Cart</a>
             <a href="#" class="dropdown-item dropdown-footer">Check Out</a>
+          <?php } ?>
+            
           </div>
         </li>
         
